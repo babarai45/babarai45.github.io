@@ -3,215 +3,772 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio of Muhammad Babar, a Software Engineering student focused on AI, Data Science, Web Development, and socially impactful technology.">
-  <title>Muhammad Babar | Software Engineering Portfolio</title>
+  <meta name="description" content="Muhammad Babar - BS Data Science Graduate & Prospective MS Student in AI / Data Science. Explore projects, certifications, work experience, and an interactive AI agent.">
+  <title>Muhammad Babar | Prospective MS Student in AI &amp; Data Science</title>
+  
+  <!-- Preconnect & Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons for modern graphics -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark-theme">
+  <!-- Interactive 3D Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Glowing background elements for radial visual interest -->
+  <div class="glowing-orb orb-1"></div>
+  <div class="glowing-orb orb-2"></div>
+  <div class="glowing-orb orb-3"></div>
+
+  <!-- Header Section with Floating Navigation -->
   <header class="site-header" id="top">
     <nav class="nav container" aria-label="Primary navigation">
-      <a class="logo" href="#top" aria-label="Muhammad Babar home">MB</a>
+      <a class="logo" href="#top" aria-label="Muhammad Babar Home">
+        <span class="logo-text">MB</span>
+        <span class="logo-sub">AGI</span>
+      </a>
+      
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
       </button>
+
       <div class="nav-menu" id="nav-menu">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#impact">Impact</a>
-        <a href="#education">Education</a>
-        <a href="#contact">Contact</a>
+        <a href="#about"><i class="fa-regular fa-user"></i> About</a>
+        <a href="#experience"><i class="fa-regular fa-briefcase"></i> Experience</a>
+        <a href="#projects"><i class="fa-regular fa-code"></i> Projects</a>
+        <a href="#skills"><i class="fa-regular fa-chart-bar"></i> Skills</a>
+        <a href="#education"><i class="fa-regular fa-graduation-cap"></i> Education</a>
+        <a href="#certifications"><i class="fa-regular fa-award"></i> Certifications</a>
+        <a href="#contact" class="nav-cta"><i class="fa-regular fa-envelope"></i> Contact</a>
+      </div>
+
+      <!-- Accent color theme switcher -->
+      <div class="theme-palette-switcher" title="Change Theme Glow">
+        <button class="theme-dot dot-cyan active" data-theme="cyan"></button>
+        <button class="theme-dot dot-purple" data-theme="purple"></button>
+        <button class="theme-dot dot-emerald" data-theme="emerald"></button>
       </div>
     </nav>
   </header>
 
   <main>
-    <!-- Hero introduces the academic portfolio and primary calls to action. -->
-    <section class="hero section">
+    <!-- Hero Section -->
+    <section class="hero-section">
       <div class="container hero-grid">
         <div class="hero-content reveal">
-          <p class="eyebrow">Academic + Tech Portfolio</p>
-          <h1>Muhammad Babar</h1>
-          <p class="hero-title">Software Engineering Student | AI &amp; Data Science Enthusiast</p>
-          <p class="hero-text">Building intelligent, practical, and socially impactful technology solutions.</p>
+          <div class="badge-glow"><i class="fa-solid fa-sparkles text-accent"></i> Prospective MS Student in AI / Data Science</div>
+          <h1>Hi, I'm <br><span class="gradient-text">Muhammad Babar</span></h1>
+          <h2 class="hero-roles">
+            <span class="role-static">Focused on </span>
+            <span class="role-typing" id="role-typing">Applied AI Systems</span>
+          </h2>
+          <p class="hero-desc text-muted">
+            Data Science graduate with a solid CS foundation and hands-on experience building real-world web platforms, backend APIs, and agentic AI systems. Specialized in NLP, responsible AI, and machine unlearning in LLMs.
+          </p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">View Projects</a>
-            <a class="btn btn-secondary" href="#contact">Contact Me</a>
-            <a class="btn btn-ghost" href="https://github.com/babar-xagi" target="_blank" rel="noopener">GitHub</a>
+            <a class="btn btn-primary" href="#ai-agent-terminal"><i class="fa-solid fa-terminal"></i> Try AI Assistant</a>
+            <a class="btn btn-secondary" href="#projects">View Projects</a>
+            <a class="btn btn-ghost" href="https://github.com/babar-xagi" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> GitHub</a>
           </div>
         </div>
-        <aside class="profile-card reveal" aria-label="Portfolio highlights">
-          <div class="profile-initials">MB</div>
-          <div>
-            <h2>Software Engineering</h2>
-            <p>AI, Data Science, Web Development, SDG Technology, Educational Innovation</p>
+
+        <!-- 3D Parallax Tilt Hero Card -->
+        <div class="hero-interactive reveal">
+          <div class="tilt-card" id="hero-tilt-card">
+            <div class="card-glow"></div>
+            <div class="card-content">
+              <div class="profile-header">
+                <div class="avatar-glow">
+                  <div class="avatar-initials">MB</div>
+                </div>
+                <div class="profile-info">
+                  <h3>Muhammad Babar</h3>
+                  <p class="profile-title">AI &amp; Data Science Developer</p>
+                  <p class="profile-loc"><i class="fa-solid fa-location-dot"></i> Lahore, Pakistan</p>
+                </div>
+              </div>
+              <div class="profile-divider"></div>
+              <div class="cv-quick-stats">
+                <div class="quick-stat-item">
+                  <span class="stat-num gradient-text">3.28</span>
+                  <span class="stat-lbl">BS CGPA</span>
+                </div>
+                <div class="quick-stat-item">
+                  <span class="stat-num gradient-text">3.67</span>
+                  <span class="stat-lbl">ADP CGPA</span>
+                </div>
+                <div class="quick-stat-item">
+                  <span class="stat-num gradient-text">10+</span>
+                  <span class="stat-lbl">Certificates</span>
+                </div>
+              </div>
+              <div class="profile-tags">
+                <span class="tag"><i class="fa-brands fa-python"></i> Python</span>
+                <span class="tag"><i class="fa-solid fa-brain"></i> Machine Learning</span>
+                <span class="tag"><i class="fa-solid fa-robot"></i> LLM Agents</span>
+                <span class="tag"><i class="fa-solid fa-server"></i> FastAPI</span>
+              </div>
+              <div class="profile-card-footer">
+                <a href="mailto:babar.xagi@gmail.com" class="profile-btn"><i class="fa-regular fa-envelope"></i> Email Me</a>
+                <a href="https://www.linkedin.com/in/m-babar-agi/" target="_blank" rel="noopener" class="profile-btn btn-linkedin"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+              </div>
+            </div>
           </div>
-          <div class="stats-grid" aria-label="Key portfolio focus areas">
-            <div>
-              <strong>AI</strong>
-              <span>Applied solutions</span>
-            </div>
-            <div>
-              <strong>SDG</strong>
-              <span>Social impact</span>
-            </div>
-            <div>
-              <strong>Web</strong>
-              <span>Modern apps</span>
-            </div>
-          </div>
-        </aside>
+        </div>
       </div>
     </section>
 
-    <!-- About and skills sections keep the admissions-focused story concise. -->
+    <!-- AI Agent Interactive Terminal -->
+    <section class="section terminal-section" id="ai-agent-terminal">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <p class="eyebrow"><i class="fa-solid fa-microchip"></i> Interactive AI Terminal</p>
+          <h2>Query My Profile &amp; Research Interests</h2>
+          <p class="section-desc">Interact with a simulated LangChain-based AI Agent containing details of my academic work, projects, and career aspirations.</p>
+        </div>
+
+        <div class="terminal-container reveal">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="terminal-title"><i class="fa-solid fa-code-branch"></i> babar-agi-agent-v1.0.5</div>
+            <div class="terminal-status"><span class="pulse-indicator"></span> ONLINE</div>
+          </div>
+          
+          <div class="terminal-body" id="terminal-body">
+            <div class="terminal-line system-msg">
+              <span class="terminal-prompt">[SYSTEM]:</span> Agent initialized. LLM APIs: Gemini-Pro &amp; Groq-Llama3 configured. Structured database loaded with Muhammad Babar's resume.
+            </div>
+            <div class="terminal-line system-msg">
+              <span class="terminal-prompt">[SYSTEM]:</span> How may I assist you? Select a quick-query below or type in the input.
+            </div>
+          </div>
+
+          <div class="terminal-typing-status" id="terminal-typing-status">
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-dot"></span>
+            <span class="typing-text">Agent is querying database...</span>
+          </div>
+
+          <div class="terminal-input-area">
+            <span class="terminal-cursor-prompt">&gt;</span>
+            <input type="text" id="terminal-input" placeholder="Type query (e.g. BS FYP details, skills, experience, goals)..." autocomplete="off">
+            <button id="terminal-send-btn" class="terminal-btn" aria-label="Send query"><i class="fa-solid fa-paper-plane"></i></button>
+          </div>
+
+          <div class="terminal-presets">
+            <span class="preset-label"><i class="fa-solid fa-tags"></i> Quick Presets:</span>
+            <div class="preset-buttons">
+              <button class="preset-btn" data-query="Summary profile & graduate goals">Graduate Goals</button>
+              <button class="preset-btn" data-query="Tell me about CampusGPT (FYP)">CampusGPT (FYP)</button>
+              <button class="preset-btn" data-query="List details of ShopHub project">ShopHub SDG Project</button>
+              <button class="preset-btn" data-query="What is his professional experience?">Work Experience</button>
+              <button class="preset-btn" data-query="Show certifications and training">Certifications</button>
+              <button class="preset-btn" data-query="Explain his skills and technology stack">Tech Stack</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
     <section class="section" id="about">
       <div class="container split-section">
         <div class="section-heading reveal">
-          <p class="eyebrow">About Me</p>
-          <h2>Focused on practical intelligence and meaningful software.</h2>
+          <p class="eyebrow"><i class="fa-regular fa-address-card"></i> Profile &amp; Objectives</p>
+          <h2>Bridging Computer Science with Applied Intelligence</h2>
+          <p class="section-desc">Pursuing graduate research that focuses on safe, robust, and socially beneficial Artificial Intelligence.</p>
         </div>
-        <div class="section-copy reveal">
-          <p>I am a Software Engineering student from Pakistan, passionate about AI, data science, software engineering, and real-world problem solving.</p>
-          <p>My goal is to contribute to impactful technology that improves education, opportunity, and digital access.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section soft-section" id="skills">
-      <div class="container">
-        <div class="section-heading centered reveal">
-          <p class="eyebrow">Skills</p>
-          <h2>Technical toolkit and learning focus</h2>
-        </div>
-        <div class="skills-grid reveal" aria-label="Skills list">
-          <span>Python</span>
-          <span>React.js</span>
-          <span>MongoDB</span>
-          <span>Machine Learning</span>
-          <span>Data Science</span>
-          <span>NLP</span>
-          <span>LLM APIs</span>
-          <span>Web Development</span>
-          <span>Git &amp; GitHub</span>
-          <span>Problem Solving</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Project cards highlight technical depth, education work, and SDG impact. -->
-    <section class="section" id="projects">
-      <div class="container">
-        <div class="section-heading centered reveal">
-          <p class="eyebrow">Projects</p>
-          <h2>Selected work across AI, education, and social impact</h2>
-        </div>
-        <div class="project-grid">
-          <article class="project-card reveal">
-            <div class="project-topline">
-              <span class="project-number">01</span>
-              <span class="project-type">AI + Campus Systems</span>
+        <div class="about-content reveal">
+          <p class="lead-text">
+            I am a Data Science undergraduate from Lahore, Pakistan, with a strong foundational training in Computer Science and software construction. 
+          </p>
+          <p>
+            My interest lies in the practical integration of Large Language Models (LLMs), Agentic workflows, NLP, and specifically **Machine Unlearning in LLMs** and **Responsible AI** structures. I have spent my academic years building real-world platforms, managing developer databases, and configuring automated multi-agent orchestrations.
+          </p>
+          
+          <div class="research-interests-grid">
+            <div class="interest-card">
+              <div class="icon-wrap"><i class="fa-solid fa-brain-circuit"></i></div>
+              <h4>Machine Unlearning</h4>
+              <p>Removing sensitive data/harmful biases from pre-trained language models without full retraining.</p>
             </div>
-            <h3>Campus ERP with AI Assistance</h3>
-            <p>A campus ERP system combining academic management with AI-based assistance and automation. Built modules for students, teachers, admin, and staff with role-based dashboards, NLP-based academic help, quiz/assignment generation, attendance-risk analysis, and CGPA/SGPA prediction.</p>
-            <div class="tag-list">
-              <span>React.js</span>
-              <span>MongoDB</span>
-              <span>Python</span>
-              <span>Machine Learning</span>
-              <span>LLM APIs</span>
+            <div class="interest-card">
+              <div class="icon-wrap"><i class="fa-solid fa-comments"></i></div>
+              <h4>NLP &amp; LLM Agents</h4>
+              <p>Designing dynamic, agentic workflows and tool-calling database assistants using LangChain.</p>
             </div>
-            <a class="card-link" href="https://github.com/babar-xagi" target="_blank" rel="noopener">Project link placeholder</a>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-topline">
-              <span class="project-number">02</span>
-              <span class="project-type">Educational Innovation</span>
+            <div class="interest-card">
+              <div class="icon-wrap"><i class="fa-solid fa-hands-holding-child"></i></div>
+              <h4>Responsible AI</h4>
+              <p>Working toward transparent, ethical machine intelligence aligned with human values and UN SDGs.</p>
             </div>
-            <h3>CAMDEEP</h3>
-            <p>An educational framework designed to develop students&apos; 21st-century skills through structured training, interactive activities, project-based learning, creativity, analytical thinking, and real-world competencies for Grade 6 to Grade 10 students.</p>
-            <div class="tag-list">
-              <span>Education</span>
-              <span>Life Skills</span>
-              <span>Project-Based Learning</span>
-              <span>Global Competencies</span>
-            </div>
-            <a class="card-link" href="https://github.com/babar-xagi" target="_blank" rel="noopener">Project link placeholder</a>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-topline">
-              <span class="project-number">03</span>
-              <span class="project-type">SDG + Digital Earning</span>
-            </div>
-            <h3>ShopHub</h3>
-            <p>An SDG-oriented technology project supporting small sellers, poor communities, and women through digital earning opportunities. The project helped create employment opportunities for more than 50 widowed women and low-income individuals, with a team of 5 contributors.</p>
-            <div class="tag-list">
-              <span>E-commerce</span>
-              <span>SDG Goals</span>
-              <span>Digital Earning</span>
-              <span>Social Impact</span>
-            </div>
-            <a class="card-link" href="https://github.com/babar-xagi" target="_blank" rel="noopener">Project link placeholder</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section impact-section" id="impact">
-      <div class="container impact-grid">
-        <div class="section-heading reveal">
-          <p class="eyebrow">SDG &amp; Social Impact</p>
-          <h2>Technology should expand opportunity.</h2>
-        </div>
-        <div class="impact-card reveal">
-          <p>I am interested in using technology for social good, especially solutions that support employment, education, small sellers, women empowerment, and digital inclusion.</p>
-          <div class="impact-list">
-            <span>Employment support</span>
-            <span>Education access</span>
-            <span>Small sellers</span>
-            <span>Women empowerment</span>
-            <span>Digital inclusion</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="section" id="education">
-      <div class="container split-section">
-        <div class="section-heading reveal">
-          <p class="eyebrow">Education</p>
-          <h2>Academic foundation in software engineering.</h2>
+    <!-- Work Experience Timeline Section -->
+    <section class="section soft-section" id="experience">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <p class="eyebrow"><i class="fa-solid fa-briefcase"></i> Work History</p>
+          <h2>Professional Experience</h2>
+          <p class="section-desc">Practical exposure to applied AI agents, healthcare analytics, and enterprise web engineering.</p>
         </div>
-        <div class="education-card reveal">
-          <h3>Software Engineering Student</h3>
-          <p>Department of Software Engineering</p>
-          <p>Faculty of Computer Science &amp; Information Technology</p>
+
+        <div class="timeline reveal">
+          <!-- Experience item 1 -->
+          <div class="timeline-item left">
+            <div class="timeline-dot"><i class="fa-solid fa-chart-line"></i></div>
+            <div class="timeline-content tilt-card-sm">
+              <div class="timeline-header">
+                <span class="timeline-date"><i class="fa-regular fa-calendar-days"></i> Feb 2025 – Jul 2025</span>
+                <h3>Data Analyst Intern — AI Agents</h3>
+                <h4 class="company-name"><i class="fa-regular fa-building"></i> Transcure, Lahore, Pakistan</h4>
+              </div>
+              <p class="experience-desc">
+                Worked inside specialized medical billing workflows using AI-agent tools like ELIXA and CODIN. Gained experience with applied AI systems serving the US medical billing market:
+              </p>
+              <ul class="experience-list">
+                <li>Analyzed billing data logs, claim submission workflows, and operational patterns.</li>
+                <li>Utilized AI-agent platforms to support data verification and detect anomalies.</li>
+                <li>Assisted teams in mapping clinical data to claiming structures.</li>
+                <li>Completed the internship to dedicate full-time focus to the final BS Data Science phase.</li>
+              </ul>
+              <div class="timeline-tags">
+                <span>AI Agents</span>
+                <span>Data Analytics</span>
+                <span>Workflows</span>
+                <span>Healthcare IT</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience item 2 -->
+          <div class="timeline-item right">
+            <div class="timeline-dot"><i class="fa-solid fa-laptop-code"></i></div>
+            <div class="timeline-content tilt-card-sm">
+              <div class="timeline-header">
+                <span class="timeline-date"><i class="fa-regular fa-calendar-days"></i> Aug 2023 – Feb 2024</span>
+                <h3>Web Developer</h3>
+                <h4 class="company-name"><i class="fa-regular fa-building"></i> First Web Solution, Lahore, Pakistan</h4>
+              </div>
+              <p class="experience-desc">
+                Built and maintained production web platforms and database integrations for travel, health, e-commerce, and client services.
+              </p>
+              <ul class="experience-list">
+                <li>Authored custom APIs, backend endpoints, and integrated responsive themes.</li>
+                <li>Collaborated on database optimizations using MySQL and schema alignments.</li>
+                <li>Contributed to the frontend and backend of several deployed client sites.</li>
+              </ul>
+              <div class="timeline-projects-grid">
+                <h5><i class="fa-solid fa-globe"></i> Deployed Client Projects:</h5>
+                <div class="client-links">
+                  <a href="https://zufta.pk/" target="_blank" rel="noopener"><i class="fa-solid fa-link"></i> Zufta.pk</a>
+                  <a href="https://petscity.pk/" target="_blank" rel="noopener"><i class="fa-solid fa-link"></i> PetsCity.pk</a>
+                  <a href="https://flybritannia.co.uk/" target="_blank" rel="noopener"><i class="fa-solid fa-link"></i> FlyBritannia.co.uk</a>
+                  <a href="https://manmohni.pk/" target="_blank" rel="noopener"><i class="fa-solid fa-link"></i> Manmohni.pk</a>
+                  <a href="https://alhamdskinclinics.com/" target="_blank" rel="noopener"><i class="fa-solid fa-link"></i> Alhamd Skin Clinics</a>
+                </div>
+              </div>
+              <div class="timeline-tags">
+                <span>PHP</span>
+                <span>JavaScript</span>
+                <span>AJAX</span>
+                <span>MySQL</span>
+                <span>WordPress</span>
+                <span>React.js</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- Projects Grid Section -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <p class="eyebrow"><i class="fa-solid fa-cubes"></i> Code Portfolio</p>
+          <h2>Academic &amp; Technical Projects</h2>
+          <p class="section-desc">Projects spanning conversational AI, software frameworks, dashboards, and social impact platforms.</p>
+        </div>
+
+        <div class="project-cards-grid">
+          <!-- Project 1 -->
+          <article class="project-card-custom reveal tilt-card-sm">
+            <div class="proj-badge">Final Year Project</div>
+            <div class="proj-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h3>CampusGPT — AI ERP</h3>
+            <p class="proj-desc text-muted">
+              An agentic campus management ERP. Built role-based dashboards combining admin tasks with NLP academic advice, ML-based CGPA predictions, attendance risk flags, and auto-generated quizzes from course files using Groq and Gemini APIs.
+            </p>
+            <div class="proj-tags">
+              <span>React.js</span>
+              <span>Python</span>
+              <span>Gemini/Groq APIs</span>
+              <span>ML/NLP</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/babar-xagi/CampusGpt" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i> Repository</a>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card-custom reveal tilt-card-sm">
+            <div class="proj-badge">SDG 17 / Social Good</div>
+            <div class="proj-icon"><i class="fa-solid fa-shop"></i></div>
+            <h3>ShopHub — E-Commerce</h3>
+            <p class="proj-desc text-muted">
+              A multi-vendor e-commerce platform designed to empower low-income merchants and widowed women. Guided by UN Sustainable Development Goal 17, enabling 50+ individuals to earn livelihood online.
+            </p>
+            <div class="proj-tags">
+              <span>FastAPI</span>
+              <span>React.js</span>
+              <span>MongoDB</span>
+              <span>SDG Impact</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/babar-xagi/ShopHub" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i> Repository</a>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card-custom reveal tilt-card-sm">
+            <div class="proj-badge">LangChain Agents</div>
+            <div class="proj-icon"><i class="fa-solid fa-robot"></i></div>
+            <h3>AI Database CRUD Agent</h3>
+            <p class="proj-desc text-muted">
+              An autonomous AI database companion. Translates natural language requests into database actions, allowing non-technical users to query, insert, update, or remove SQL records dynamically through Gemini and Groq API calls.
+            </p>
+            <div class="proj-tags">
+              <span>LangChain</span>
+              <span>Gemini API</span>
+              <span>PostgreSQL</span>
+              <span>CRUD</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/babar-xagi/AI-Database-Agent" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i> Repository</a>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card-custom reveal tilt-card-sm">
+            <div class="proj-badge">Data Science</div>
+            <div class="proj-icon"><i class="fa-solid fa-chart-line"></i></div>
+            <h3>Tech Stock Performance</h3>
+            <p class="proj-desc text-muted">
+              Financial data science system extracting tech sector performance indicators. Implements feature engineering, regression analytics, and interactive metrics plots visualizing stock trend behaviors and price movement forecasting.
+            </p>
+            <div class="proj-tags">
+              <span>Python</span>
+              <span>Pandas</span>
+              <span>Scikit-Learn</span>
+              <span>Matplotlib</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/babar-xagi/Tech-Stock-Performance-Analysis-Dashboard" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i> Repository</a>
+            </div>
+          </article>
+
+          <!-- Project 5 -->
+          <article class="project-card-custom reveal tilt-card-sm">
+            <div class="proj-badge">EdTech Framework</div>
+            <div class="proj-icon"><i class="fa-solid fa-network-wired"></i></div>
+            <h3>CAMDEEP</h3>
+            <p class="proj-desc text-muted">
+              Technical support and portal organization for the CAMDEEP education framework, promoting 21st-century competencies (creativity, leadership, digital literacy, ethics) for students in Grades 6–10.
+            </p>
+            <div class="proj-tags">
+              <span>Education tech</span>
+              <span>Worksheets</span>
+              <span>Project-Based Learning</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/babar-xagi/camdeep-" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i> Repository</a>
+            </div>
+          </article>
+
+          <!-- Project 6 -->
+          <article class="project-card-custom reveal tilt-card-sm">
+            <div class="proj-badge">Client Deployed</div>
+            <div class="proj-icon"><i class="fa-solid fa-plane"></i></div>
+            <h3>Global Travel Plugin</h3>
+            <p class="proj-desc text-muted">
+              A custom flight, hotel, and rental search WordPress module coded for client site flybritannia.co.uk. Connects with travel aggregators to query real-time booking rates asynchronously.
+            </p>
+            <div class="proj-tags">
+              <span>PHP</span>
+              <span>AJAX</span>
+              <span>JavaScript</span>
+              <span>Third-party API</span>
+            </div>
+            <div class="proj-links">
+              <a href="https://github.com/babar-xagi/Travel-Plugin" target="_blank" rel="noopener" class="proj-link"><i class="fa-brands fa-github"></i> Repository</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Skills Categories -->
+    <section class="section soft-section" id="skills">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <p class="eyebrow"><i class="fa-solid fa-sliders"></i> Skillset</p>
+          <h2>Technical Toolbox</h2>
+          <p class="section-desc">My technical competencies grouped into operational focus areas.</p>
+        </div>
+
+        <div class="skills-tabs-container reveal">
+          <div class="skills-tab-headers">
+            <button class="skill-tab-btn active" data-category="ai-ml"><i class="fa-solid fa-brain"></i> AI &amp; Machine Learning</button>
+            <button class="skill-tab-btn" data-category="ds"><i class="fa-solid fa-chart-pie"></i> Data Science</button>
+            <button class="skill-tab-btn" data-category="backend"><i class="fa-solid fa-server"></i> Backend &amp; Databases</button>
+            <button class="skill-tab-btn" data-category="frontend"><i class="fa-solid fa-display"></i> Frontend &amp; Tools</button>
+            <button class="skill-tab-btn" data-category="langs"><i class="fa-solid fa-terminal"></i> Programming Languages</button>
+          </div>
+
+          <div class="skills-tab-content">
+            <!-- AI & ML -->
+            <div class="tab-pane active" id="ai-ml">
+              <div class="skills-list-grid">
+                <div class="skill-item"><span>Natural Language Processing (NLP)</span><div class="bar-wrap"><div class="bar-fill" style="width: 85%"></div></div></div>
+                <div class="skill-item"><span>RAG (Retrieval-Augmented Generation)</span><div class="bar-wrap"><div class="bar-fill" style="width: 88%"></div></div></div>
+                <div class="skill-item"><span>LLM APIs (Gemini, Groq, OpenAI)</span><div class="bar-wrap"><div class="bar-fill" style="width: 90%"></div></div></div>
+                <div class="skill-item"><span>LangChain Framework</span><div class="bar-wrap"><div class="bar-fill" style="width: 80%"></div></div></div>
+                <div class="skill-item"><span>Predictive Modeling</span><div class="bar-wrap"><div class="bar-fill" style="width: 85%"></div></div></div>
+                <div class="skill-item"><span>Scikit-learn / TensorFlow</span><div class="bar-wrap"><div class="bar-fill" style="width: 78%"></div></div></div>
+              </div>
+            </div>
+
+            <!-- Data Science -->
+            <div class="tab-pane" id="ds">
+              <div class="skills-list-grid">
+                <div class="skill-item"><span>Pandas &amp; NumPy</span><div class="bar-wrap"><div class="bar-fill" style="width: 90%"></div></div></div>
+                <div class="skill-item"><span>Data Cleaning &amp; Feature Engineering</span><div class="bar-wrap"><div class="bar-fill" style="width: 88%"></div></div></div>
+                <div class="skill-item"><span>Statistical Analysis</span><div class="bar-wrap"><div class="bar-fill" style="width: 85%"></div></div></div>
+                <div class="skill-item"><span>Data Visualization (Matplotlib, Seaborn)</span><div class="bar-wrap"><div class="bar-fill" style="width: 82%"></div></div></div>
+                <div class="skill-item"><span>Data Mining</span><div class="bar-wrap"><div class="bar-fill" style="width: 80%"></div></div></div>
+              </div>
+            </div>
+
+            <!-- Backend -->
+            <div class="tab-pane" id="backend">
+              <div class="skills-list-grid">
+                <div class="skill-item"><span>FastAPI (Python REST APIs)</span><div class="bar-wrap"><div class="bar-fill" style="width: 88%"></div></div></div>
+                <div class="skill-item"><span>PostgreSQL / SQL Databases</span><div class="bar-wrap"><div class="bar-fill" style="width: 85%"></div></div></div>
+                <div class="skill-item"><span>MongoDB (NoSQL)</span><div class="bar-wrap"><div class="bar-fill" style="width: 80%"></div></div></div>
+                <div class="skill-item"><span>RESTful API Development</span><div class="bar-wrap"><div class="bar-fill" style="width: 90%"></div></div></div>
+                <div class="skill-item"><span>Database Schema Design</span><div class="bar-wrap"><div class="bar-fill" style="width: 82%"></div></div></div>
+              </div>
+            </div>
+
+            <!-- Frontend -->
+            <div class="tab-pane" id="frontend">
+              <div class="skills-list-grid">
+                <div class="skill-item"><span>React.js Framework</span><div class="bar-wrap"><div class="bar-fill" style="width: 78%"></div></div></div>
+                <div class="skill-item"><span>HTML5, CSS3, &amp; Vanilla JavaScript</span><div class="bar-wrap"><div class="bar-fill" style="width: 88%"></div></div></div>
+                <div class="skill-item"><span>Git &amp; GitHub Version Control</span><div class="bar-wrap"><div class="bar-fill" style="width: 92%"></div></div></div>
+                <div class="skill-item"><span>WordPress Custom Development</span><div class="bar-wrap"><div class="bar-fill" style="width: 85%"></div></div></div>
+                <div class="skill-item"><span>Docker Basics</span><div class="bar-wrap"><div class="bar-fill" style="width: 60%"></div></div></div>
+                <div class="skill-item"><span>Jupyter Notebooks</span><div class="bar-wrap"><div class="bar-fill" style="width: 90%"></div></div></div>
+              </div>
+            </div>
+
+            <!-- Languages -->
+            <div class="tab-pane" id="langs">
+              <div class="skills-list-grid">
+                <div class="skill-item"><span>Python</span><div class="bar-wrap"><div class="bar-fill" style="width: 92%"></div></div></div>
+                <div class="skill-item"><span>JavaScript</span><div class="bar-wrap"><div class="bar-fill" style="width: 85%"></div></div></div>
+                <div class="skill-item"><span>PHP</span><div class="bar-wrap"><div class="bar-fill" style="width: 80%"></div></div></div>
+                <div class="skill-item"><span>SQL</span><div class="bar-wrap"><div class="bar-fill" style="width: 88%"></div></div></div>
+                <div class="skill-item"><span>C / C++</span><div class="bar-wrap"><div class="bar-fill" style="width: 70%"></div></div></div>
+                <div class="skill-item"><span>Rust (Basics / Learning)</span><div class="bar-wrap"><div class="bar-fill" style="width: 50%"></div></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education & Scholarships Section -->
+    <section class="section" id="education">
+      <div class="container split-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><i class="fa-solid fa-graduation-cap"></i> Education</p>
+          <h2>Academic Credentials</h2>
+          <p class="section-desc">Strong foundation in applied mathematics, data structure algorithms, and statistics.</p>
+
+          <div class="scholarships-container reveal">
+            <h3 class="schol-title"><i class="fa-solid fa-award text-accent"></i> Scholarships &amp; Merit Awards</h3>
+            <ul class="schol-list">
+              <li>
+                <div class="schol-badge">College Level</div>
+                <strong>25% Merit Scholarship</strong> based on exceptional matriculation performance.
+              </li>
+              <li>
+                <div class="schol-badge">University Level</div>
+                <strong>50% Alumni/Merit-Based Scholarship</strong> for ADP continuation study at Superior University.
+              </li>
+              <li>
+                <div class="schol-badge">Bridging Pathway</div>
+                <strong>50% Scholarship</strong> for BS Data Science continuation based on high CGPA in CS.
+              </li>
+              <li>
+                <div class="schol-badge">Government Skill Initiative</div>
+                <strong>Fully Funded AI Training</strong> via NAVTTC, under the PM's Youth Skill Program.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="education-timeline reveal">
+          <!-- BS DS -->
+          <div class="edu-card tilt-card-sm">
+            <div class="edu-header">
+              <span class="edu-duration">2024 – 2026</span>
+              <h3>BS in Data Science</h3>
+              <h4>The Superior University, Lahore, Pakistan</h4>
+            </div>
+            <div class="edu-stats">
+              <span><strong>CGPA:</strong> 3.28 / 4.00</span>
+              <span><strong>OPM:</strong> 78%</span>
+            </div>
+            <p class="edu-desc">
+              Focusing on predictive analytics, artificial intelligence, and big data architecture.
+            </p>
+            <div class="edu-coursework">
+              <h5>Key Coursework:</h5>
+              <p>Artificial Intelligence, Machine Learning, Data Mining, Data Visualization, Advanced Statistics, Big Data Analytics, Data Warehousing, Parallel &amp; Distributed Computing, Analysis of Algorithms.</p>
+            </div>
+            <div class="edu-fyp">
+              <strong>FYP:</strong> CampusGPT — AI-Powered Agentic Campus ERP System (ID: FYP-BSDSM-F25-005)
+            </div>
+          </div>
+
+          <!-- Associate Degree -->
+          <div class="edu-card tilt-card-sm">
+            <div class="edu-header">
+              <span class="edu-duration">2021 – 2023</span>
+              <h3>Associate Degree in Computer Science (ADP)</h3>
+              <h4>The Superior University, Lahore, Pakistan</h4>
+            </div>
+            <div class="edu-stats">
+              <span><strong>CGPA:</strong> 3.67 / 4.00</span>
+              <span><strong>OPM:</strong> 82%</span>
+            </div>
+            <p class="edu-desc">
+              Gained core knowledge in OOP, database schemas, and web applications.
+            </p>
+            <div class="edu-coursework">
+              <h5>Key Coursework:</h5>
+              <p>Programming Fundamentals, OOP, Data Structures &amp; Algorithms, Database Systems, Software Engineering, Web App Development, Mobile App Development, Probability &amp; Statistics.</p>
+            </div>
+          </div>
+
+          <!-- Inter -->
+          <div class="edu-card-simple">
+            <div class="edu-header-simple">
+              <span class="edu-duration">2020</span>
+              <h3>Intermediate in General Science</h3>
+              <h4>Superior College, Kahnore Campus | BISE Lahore</h4>
+            </div>
+            <p class="edu-stats-simple"><strong>Marks:</strong> 614 / 1100</p>
+          </div>
+
+          <!-- Matric -->
+          <div class="edu-card-simple">
+            <div class="edu-header-simple">
+              <span class="edu-duration">2018</span>
+              <h3>Matriculation in Science</h3>
+              <h4>Govt. High School, Kahna Nau, Lahore | BISE Lahore</h4>
+            </div>
+            <p class="edu-stats-simple"><strong>Marks:</strong> 829 / 1100 | <strong>Grade:</strong> A</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="section soft-section" id="certifications">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <p class="eyebrow"><i class="fa-solid fa-stamp"></i> Credentials</p>
+          <h2>Certifications &amp; Training</h2>
+          <p class="section-desc">Professional specializations in machine learning, MLOps, deep learning, and data analytics.</p>
+        </div>
+
+        <div class="certifications-slider-container reveal">
+          <div class="certifications-grid">
+            <!-- Cert 1 -->
+            <div class="cert-card">
+              <div class="cert-provider">Stanford / DeepLearning.AI</div>
+              <h3>Machine Learning Specialization</h3>
+              <p>Comprehensive training on supervised learning, neural networks, decision trees, and unsupervised structures.</p>
+              <div class="cert-meta"><span class="badge-issuer">DeepLearning.AI</span></div>
+            </div>
+            <!-- Cert 2 -->
+            <div class="cert-card">
+              <div class="cert-provider">Govt of Pakistan</div>
+              <h3>Artificial Intelligence Certificate</h3>
+              <p>Intensive professional training program in applied AI models organized by NAVTTC.</p>
+              <div class="cert-meta"><span class="badge-issuer">NAVTTC</span></div>
+            </div>
+            <!-- Cert 3 -->
+            <div class="cert-card">
+              <div class="cert-provider">Google</div>
+              <h3>Advanced Data Analytics Professional</h3>
+              <p>Rigorous validation of statistical models, regression, exploratory data analysis, and visual storytelling.</p>
+              <div class="cert-meta"><span class="badge-issuer">Google</span></div>
+            </div>
+            <!-- Cert 4 -->
+            <div class="cert-card">
+              <div class="cert-provider">Duke University</div>
+              <h3>Python Essentials for MLOps</h3>
+              <p>Acquiring knowledge on automating build pipelines, model versioning, and deploying ML modules locally and via cloud.</p>
+              <div class="cert-meta"><span class="badge-issuer">Duke Univ.</span></div>
+            </div>
+            <!-- Cert 5 -->
+            <div class="cert-card">
+              <div class="cert-provider">DeepLearning.AI</div>
+              <h3>Machine Learning in Production</h3>
+              <p>Designing workflows, collecting baseline data, testing model performance shifts, and production deployment pipeline.</p>
+              <div class="cert-meta"><span class="badge-issuer">DeepLearning.AI</span></div>
+            </div>
+            <!-- Cert 6 -->
+            <div class="cert-card">
+              <div class="cert-provider">DeepLearning.AI</div>
+              <h3>TensorFlow for AI, ML, &amp; Deep Learning</h3>
+              <p>Hands-on building of convolutional neural networks, sequence models, and transfer learning workflows.</p>
+              <div class="cert-meta"><span class="badge-issuer">DeepLearning.AI</span></div>
+            </div>
+            <!-- Cert 7 -->
+            <div class="cert-card">
+              <div class="cert-provider">IBM</div>
+              <h3>Machine Learning with Python</h3>
+              <p>Validating regression, classification, clustering pipelines, and evaluating models with standard performance scores.</p>
+              <div class="cert-meta"><span class="badge-issuer">IBM</span></div>
+            </div>
+            <!-- Cert 8 -->
+            <div class="cert-card">
+              <div class="cert-provider">IBM</div>
+              <h3>Python for Data Science, AI &amp; Dev</h3>
+              <p>Covered core programming syntax, file operations, web scraping, and interacting with APIs.</p>
+              <div class="cert-meta"><span class="badge-issuer">IBM</span></div>
+            </div>
+            <!-- Cert 9 -->
+            <div class="cert-card">
+              <div class="cert-provider">IBM</div>
+              <h3>Databases &amp; SQL for DS with Python</h3>
+              <p>Querying relational database servers, constructing join operations, and accessing data assets via DB-API using Python.</p>
+              <div class="cert-meta"><span class="badge-issuer">IBM</span></div>
+            </div>
+            <!-- Cert 10 -->
+            <div class="cert-card">
+              <div class="cert-provider">Univ. of Michigan</div>
+              <h3>Python for Everybody Specialization</h3>
+              <p>Foundation courses in data retrieval, cleaning, storage structures, and utilizing REST endpoints.</p>
+              <div class="cert-meta"><span class="badge-issuer">UMich</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social Impact & Community Engagement Section -->
+    <section class="section" id="social-impact">
+      <div class="container split-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><i class="fa-solid fa-people-carry-box"></i> Social Good</p>
+          <h2>Technology with a Human Perspective</h2>
+          <p class="section-desc">Active volunteering and engineering software oriented around societal support systems.</p>
+        </div>
+
+        <div class="impact-cards-container reveal">
+          <!-- Card 1 -->
+          <div class="impact-item-box">
+            <div class="impact-icon"><i class="fa-solid fa-hands-holding-heart"></i></div>
+            <h3>Volunteer — Alkhidmat Foundation</h3>
+            <span class="sub-loc">Punjab North (Buner)</span>
+            <p>Participated in local volunteer activities, food packing, and emergency relief distribution drives, supporting low-income families and displaced regional communities.</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="impact-item-box">
+            <div class="impact-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+            <h3>SDG-17 Technology: ShopHub</h3>
+            <span class="sub-loc">Collaborative Project (5-Member Team)</span>
+            <p>Co-developed an e-commerce management platform mapped to **UN SDG 17 (Partnerships for the Goals)**. The project targeted digital business options for local widowed women, small vendors, and low-income sellers. Successfully onboarded local sellers, creating secondary income opportunities for 50+ families.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
     <section class="section contact-section" id="contact">
       <div class="container">
         <div class="section-heading centered reveal">
-          <p class="eyebrow">Contact</p>
-          <h2>Open to internships, research-oriented projects, and collaborations.</h2>
+          <p class="eyebrow"><i class="fa-solid fa-address-book"></i> Connect</p>
+          <h2>Let's Start a Conversation</h2>
+          <p class="section-desc">Available for research partnerships, software development, or graduate study opportunities.</p>
         </div>
-        <div class="contact-grid reveal">
-          <a class="contact-card" href="mailto:babar.xagi@gmail.com">
-            <span>Email</span>
-            <strong>babar.xagi@gmail.com</strong>
+
+        <div class="contact-grid-custom reveal">
+          <!-- Card 1 -->
+          <div class="contact-card-custom click-to-copy" data-copy="babar.xagi@gmail.com" title="Click to copy email">
+            <div class="c-icon"><i class="fa-regular fa-envelope"></i></div>
+            <h3>Email</h3>
+            <span class="c-value">babar.xagi@gmail.com</span>
+            <span class="copy-hint"><i class="fa-regular fa-copy"></i> Click to copy</span>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="contact-card-custom click-to-copy" data-copy="+923193571902" title="Click to copy phone">
+            <div class="c-icon"><i class="fa-solid fa-phone"></i></div>
+            <h3>Phone</h3>
+            <span class="c-value">+92-319-3571902</span>
+            <span class="copy-hint"><i class="fa-regular fa-copy"></i> Click to copy</span>
+          </div>
+
+          <!-- Card 3 -->
+          <a class="contact-card-custom" href="https://github.com/babar-xagi" target="_blank" rel="noopener">
+            <div class="c-icon"><i class="fa-brands fa-github"></i></div>
+            <h3>GitHub</h3>
+            <span class="c-value">github.com/babar-xagi</span>
+            <span class="copy-hint"><i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Profile</span>
           </a>
-          <a class="contact-card" href="https://github.com/babar-xagi" target="_blank" rel="noopener">
-            <span>GitHub</span>
-            <strong>@babar-xagi</strong>
+
+          <!-- Card 4 -->
+          <a class="contact-card-custom" href="https://www.linkedin.com/in/m-babar-agi/" target="_blank" rel="noopener">
+            <div class="c-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+            <h3>LinkedIn</h3>
+            <span class="c-value">linkedin.com/in/m-babar-agi</span>
+            <span class="copy-hint"><i class="fa-solid fa-arrow-up-right-from-square"></i> Connect</span>
           </a>
+        </div>
+
+        <!-- Address Card -->
+        <div class="address-box-wrapper reveal">
+          <div class="address-box">
+            <div class="a-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+            <div class="a-text">
+              <h3>Address</h3>
+              <p>Mohallah Patti Kashmir, Basahmola Kahna Nau, Tehsil Lahore Cantt, District Lahore, Punjab, Pakistan</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -219,8 +776,13 @@
 
   <footer class="site-footer">
     <div class="container footer-content">
-      <p>&copy; <span id="year"></span> Muhammad Babar. All rights reserved.</p>
-      <a href="#top">Back to top</a>
+      <div class="footer-left">
+        <p>&copy; <span id="year"></span> Muhammad Babar. All rights reserved.</p>
+        <p class="footer-tagline">Leveraging Agentic AI for a Connected Future</p>
+      </div>
+      <div class="footer-right">
+        <a href="#top" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Top</a>
+      </div>
     </div>
   </footer>
 
