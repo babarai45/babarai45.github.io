@@ -489,10 +489,9 @@ function initAIAgentTerminal() {
     contact: `
 <span class="terminal-prompt">[AGENT]:</span> **Direct Contact Paths:**
 *   **Email:** babar.xagi@gmail.com
-*   **Phone:** +92-319-3571902
 *   **LinkedIn:** linkedin.com/in/m-babar-agi/
 *   **GitHub:** github.com/babar-xagi
-*   *Feel free to copy email or phone details from the contact section cards!*
+*   *Feel free to copy email details from the contact section cards!*
 `,
     fallback: `
 <span class="terminal-prompt">[AGENT]:</span> Query processed. Muhammad Babar is a Data Science graduate (CGPA 3.28) and CS Associate Degree holder (CGPA 3.67) specializing in AI Systems, LangChain Agents, MLOps, and Web Platforms.
